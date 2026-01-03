@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# User Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app that fetches and displays a list of users in a searchable table.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Search users by name, email, company, or phone number
+- Real-time filtering (case-insensitive)
+- Shows "No results found" when search returns nothing
+- Hover effect on table rows
+- Loading state while fetching data
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Navigate to project folder:
+```bash
+cd "d:\Personal Stuff\React js\simple-react-dashboard"
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install dependencies:
+```bash
+npm install
+```
 
-### `npm test`
+3. Start dev server:
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Build for production:
+```bash
+npm run build
+```
 
-### `npm run build`
+## How It Works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Fetch**: Fetches 10 users from `https://jsonplaceholder.typicode.com/users` on page load
+- **Search**: Type in the search box to filter users by name, email, company, or phone
+- **Filter Logic**: Each keystroke filters the list (case-insensitive matching)
+- **Table**: Displays Name, Username, Email, Company, and Phone columns
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## File Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+src/
+├── App.js       # Main component
+└── App.css      # Styles
+```
 
-### `npm run eject`
+## State Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `search` - Search input value
+- `users` - Array of fetched users
+- `loading` - Boolean for loading state
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Key Hooks
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `useEffect` - Fetch users on component mount
+- `useState` - Manage search, users, and loading state
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Used
 
-## Learn More
+JSONPlaceholder: `https://jsonplaceholder.typicode.com/users`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Sample response:
+```json
+{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "phone": "1-770-736-8031",
+  "company": { "name": "Romaguera-Crona" }
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
 
-### Code Splitting
+**Table headers shrink when no results**
+- Make sure `colSpan="5"` matches the number of columns
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Search not working**
+- Check browser console for errors (F12)
+- Verify the input is focused
 
-### Analyzing the Bundle Size
+**Data not loading**
+- Check internet connection
+- API might be down
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Last Updated**: January 4, 2026
