@@ -41,31 +41,12 @@ function App() {
   // Main JSX render
   return (
     // Outer container: center horizontally, top-aligned
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      justifyContent: 'center', 
-      alignItems: 'flex-start', 
-      paddingTop: '40px', 
-      background: '#F4F6F8', 
-      boxSizing: 'border-box'
-    }}>
+    <div className="app-root" >
       {/* Card wrapper */}
-      <div style={{
-        width: '1200px', 
-        padding: '20px',
-        backgroundColor: '#FFFFFF', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        gap: '12px', 
-        minHeight: '360px', 
-        boxSizing: 'border-box',
-        border: '1px solid #E5E7EB', 
-        borderRadius: '6px' 
-      }}>
+      <div className="card">
 
         {/* Dashboard title */}
-        <h2 style={{ marginBottom: 0, color: '#111827' }}>
+        <h2 className="card-title">
          USER DASHBOARD
         </h2>
 
@@ -75,33 +56,13 @@ function App() {
           placeholder="Search by name, email, or company"
           value={search} // Bind to search state
           onChange={(e) => setSearch(e.target.value)} // Update search state on input change
-          style={{
-            width: '100%',
-            padding: '8px 10px', 
-            boxSizing: 'border-box',
-            backgroundColor: '#FFFFFF',
-            color: '#111827', 
-            border: '1px solid #D1D5DB', 
-            borderRadius: '4px', 
-            fontSize: '14px' 
-          }}
+          className="search-input"
         />
 
-        <div style={{
-          flex: 1, 
-          overflow: 'auto', 
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
+        <div className="table-wrapper">
 
          
-          <table style={{
-            width: '100%', 
-            tableLayout: 'fixed',
-            borderCollapse: 'collapse', 
-            fontSize: '14px',
-            color: '#111827'
-          }}>
+          <table class='users-table'>
             <colgroup>
               <col style={{ width: '20%' }} />
               <col style={{ width: '20%' }} />
@@ -111,22 +72,13 @@ function App() {
             </colgroup>
 
             {/* Table header */}
-            <thead style={{
-              backgroundColor: '#F9FAFB', 
-              color: '#111827'
-            }}>
+            <thead className='users-table thead'>
               <tr>
                 {/* Map header names to table cells */}
                 {['Name', 'Username', 'Email', 'Company', 'Phone No'].map(h => (
                   <th
                     key={h}
-                    style={{
-                      textAlign: 'left', 
-                      padding: '10px 8px', 
-                      fontWeight: 600, 
-                      borderBottom: '1px solid #E5E7EB' 
-                    }}
-                  >
+                    className='users-table th'>
                     {h}
                   </th>
                 ))}
@@ -139,12 +91,7 @@ function App() {
                 <tr>
                   <td
                     colSpan="5" 
-                    style={{
-                      textAlign: 'center', 
-                      padding: '16px', 
-                      color: '#6B7280' 
-                    }}
-                  >
+                    className='no-results'>
                     No results found
                   </td>
                 </tr>
@@ -153,17 +100,15 @@ function App() {
                 filteredUsers.map(u => (
                   <tr
                     key={u.id} // Unique key for React list rendering
-                    style={{
-                      borderBottom: '1px solid #E5E7EB' 
-                    }}
+                    className="users-table tr"
                     onMouseEnter={e => (e.currentTarget.style.background = '#F3F4F6')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                   >
-                    <td style={{ padding: '8px' }}>{u.name}</td>
-                    <td style={{ padding: '8px' }}>{u.username}</td>
-                    <td style={{ padding: '8px' }}>{u?.email || 'N/A'}</td>
-                    <td style={{ padding: '8px' }}>{u.company?.name || 'N/A'}</td>
-                    <td style={{ padding: '8px' }}>{u.phone || 'N/A'}</td>
+                    <td className="users-table td">{u.name}</td>
+                    <td className="users-table td">{u.username}</td>
+                    <td className="users-table td">{u?.email || 'N/A'}</td>
+                    <td className="users-table td">{u.company?.name || 'N/A'}</td>
+                    <td className="users-table td">{u.phone || 'N/A'}</td>
                   </tr>
                 ))
               )}
