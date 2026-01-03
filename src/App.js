@@ -157,7 +157,7 @@ function App() {
                       borderBottom: '1px solid #E5E7EB' 
                     }}
                     onMouseEnter={e => (e.currentTarget.style.background = '#F3F4F6')}
-                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                   >
                     <td style={{ padding: '8px' }}>{u.name}</td>
                     <td style={{ padding: '8px' }}>{u.username}</td>
