@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
 function App() {
+
+  const [search, setSearch] = React.useState(''); //state for search input
+
+
+  //JSX
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Simple React Dashboard
-        </a>
-      </header>
+    <div>
+      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+      <h1>{search}</h1>
     </div>
   );
 }
