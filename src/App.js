@@ -35,89 +35,67 @@ function App() {
 
   // Show loading state while fetching data
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="p-6">Loading...</div>;
   }
 
   // Main JSX render
   return (
-    // Outer container: center horizontally, top-aligned
-    <div className="app-root" >
-      {/* Card wrapper */}
-      <div className="card">
+    <div className="min-h-screen bg-gray-100 flex justify-center pt-10">
+      <div className="bg-white w-full max-w-6xl p-5 rounded border">
 
-        {/* Dashboard title */}
-        <h2 className="card-title">
-         USER DASHBOARD
+        <h2 className="text-lg font-semibold mb-3">
+          User Dashboard
         </h2>
 
-        {/* Search input field */}
         <input
           type="text"
           placeholder="Search by name, email, or company"
-          value={search} // Bind to search state
-          onChange={(e) => setSearch(e.target.value)} // Update search state on input change
-          className="search-input"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          className="w-full border rounded px-3 py-2 text-sm mb-4"
         />
 
-        <div className="table-wrapper">
-
-         
-          <table class='users-table'>
-            <colgroup>
-              <col style={{ width: '20%' }} />
-              <col style={{ width: '20%' }} />
-              <col style={{ width: '20%' }} />
-              <col style={{ width: '20%' }} />
-              <col style={{ width: '20%' }} />
-            </colgroup>
-
-            {/* Table header */}
-            <thead className='users-table thead'>
+        <div className="overflow-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
               <tr>
-                {/* Map header names to table cells */}
-                {['Name', 'Username', 'Email', 'Company', 'Phone No'].map(h => (
+                {["Name", "Username", "Email", "Company", "Phone"].map(h => (
                   <th
                     key={h}
-                    className='users-table th'>
+                    className="text-left border-b py-2 font-medium"
+                  >
                     {h}
                   </th>
                 ))}
               </tr>
             </thead>
 
-            {/* Table body */}
             <tbody>
               {filteredUsers.length === 0 ? (
                 <tr>
-                  <td
-                    colSpan="5" 
-                    className='no-results'>
+                  <td colSpan="5" className="py-4 text-center text-gray-500">
                     No results found
                   </td>
                 </tr>
               ) : (
-                // Map filtered users to table rows
                 filteredUsers.map(u => (
-                  <tr
-                    key={u.id} // Unique key for React list rendering
-                    className="users-table tr"
-                    onMouseEnter={e => (e.currentTarget.style.background = '#F3F4F6')}
-                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                  >
-                    <td className="users-table td">{u.name}</td>
-                    <td className="users-table td">{u.username}</td>
-                    <td className="users-table td">{u?.email || 'N/A'}</td>
-                    <td className="users-table td">{u.company?.name || 'N/A'}</td>
-                    <td className="users-table td">{u.phone || 'N/A'}</td>
+                  <tr key={u.id} className="border-b hover:bg-gray-50">
+                    <td className="py-2">{u.name}</td>
+                    <td className="py-2">{u.username}</td>
+                    <td className="py-2">{u.email}</td>
+                    <td className="py-2">{u.company?.name || "N/A"}</td>
+                    <td className="py-2">{u.phone}</td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
         </div>
+
       </div>
     </div>
   );
 }
+
 
 export default App;
